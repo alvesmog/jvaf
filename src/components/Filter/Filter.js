@@ -113,29 +113,35 @@ function Filter() {
   }
 
   return (
-    <FilterWrapper>
-      <Segment>
-        {headers &&
-          headers.map((header) => {
-            return (
-              <>
-                <Header as="h3">{header}</Header>
-                {Object.keys(actualValues).length !== 0 &&
-                  actualValues[header] &&
-                  actualValues[header].map((option) => (
-                    <Checkbox
-                      label={option.toString()}
-                      column={header.toString()}
-                      value={option.toString()}
-                      onChange={filterHandler}
-                    />
-                  ))}
-              </>
-            );
-          })}
-        <Divider section />
-      </Segment>
-    </FilterWrapper>
+    <>
+      {headers && (
+        <FilterWrapper>
+          <Segment>
+            <Header as="h2">Filter data</Header>
+            <Divider section />
+            {headers &&
+              headers.map((header) => {
+                return (
+                  <>
+                    <Header as="h3">{header}</Header>
+                    {Object.keys(actualValues).length !== 0 &&
+                      actualValues[header] &&
+                      actualValues[header].map((option) => (
+                        <Checkbox
+                          label={option.toString()}
+                          column={header.toString()}
+                          value={option.toString()}
+                          onChange={filterHandler}
+                        />
+                      ))}
+                    <Divider section />
+                  </>
+                );
+              })}
+          </Segment>
+        </FilterWrapper>
+      )}
+    </>
   );
 }
 

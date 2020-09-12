@@ -7,7 +7,7 @@ import axios from "axios";
 function FetchBar() {
   const { setCache } = useContext(CacheContext);
   const [fetchUrl, setFetchUrl] = useState();
-  const [placeholder, setPlaceholder] = useState("Fetch url...")
+  const [placeholder, setPlaceholder] = useState("Array of JSONs URL...")
 
   function handleClick() {
     if (fetchUrl) {
@@ -30,7 +30,7 @@ function FetchBar() {
         onChange={changeHandler}
       >
         <input />
-        <Button onClick={handleClick}>Search</Button>
+        <Button onClick={handleClick}>Fetch!</Button>
       </Input>
     </FetchBarWrapper>
   );
