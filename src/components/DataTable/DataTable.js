@@ -12,7 +12,7 @@ function DataTable() {
         <Segment style={{ width: "100%", borderRadius: "12px" }} placeholder>
           <Header icon>
             <Icon name="frown outline" />
-            Oops! There's nothing to show here... Try fetching some data!
+            Oops! There's nothing to show here yet... Try fetching some data!
           </Header>
         </Segment>
       )}

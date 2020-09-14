@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import CacheContext from "../CacheContext";
 import DataContext from "../DataContext";
 import { FilterWrapper } from "./styles";
-import { Checkbox, Divider, Header, Segment } from "semantic-ui-react";
+import { Checkbox, Divider, Header, Segment, Icon } from "semantic-ui-react";
 
 function Filter() {
   const { cache } = useContext(CacheContext);
@@ -117,13 +117,13 @@ function Filter() {
       {headers && (
         <FilterWrapper>
           <Segment>
-            <Header as="h2">Filter data</Header>
+            <Header as="h4"><Icon name="filter"></Icon>Filter data</Header>
             <Divider section />
             {headers &&
               headers.map((header) => {
                 return (
                   <>
-                    <Header as="h3">{header}</Header>
+                    <Header as="h5">{header}</Header>
                     {Object.keys(actualValues).length !== 0 &&
                       actualValues[header] &&
                       actualValues[header].map((option) => (
