@@ -11,7 +11,6 @@ function Filter() {
   const [helperValues, setHelperValues] = useState({});
   const [actualValues, setActualValues] = useState({});
   const [checkedFilters, setCheckedFilters] = useState({});
-  const [testData, setTestData] = useState([]);
   const [dataWasfiltered, setDataWasFiltered] = useState(false);
 
   useEffect(() => {
@@ -104,12 +103,15 @@ function Filter() {
           cache
             .filter((entry) => entry[filteredColumn] == filteredValue)
             .map((filteredObject) => filteredObjects.push(filteredObject));
-          //setDataWasFiltered(true);
         }
       })
     );
 
-    return filteredObjects;
+    let uniqueFilteredObjects = new Set(filteredObjects);
+
+    let uniqueFilteredObjectsArray = [...uniqueFilteredObjects];
+
+    return uniqueFilteredObjectsArray;
   }
 
   return (
@@ -117,7 +119,9 @@ function Filter() {
       {headers && (
         <FilterWrapper>
           <Segment>
-            <Header as="h4"><Icon name="filter"></Icon>Filter data</Header>
+            <Header as="h4">
+              <Icon name="filter"></Icon>Filter data
+            </Header>
             <Divider section />
             {headers &&
               headers.map((header) => {

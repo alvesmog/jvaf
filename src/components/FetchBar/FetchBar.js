@@ -3,16 +3,38 @@ import CacheContext from "../CacheContext";
 import { FetchBarWrapper } from "./styles";
 import { Input, Button } from "semantic-ui-react";
 import axios from "axios";
+import FetchContext from "../FetchContext";
 
 function FetchBar() {
   const { setCache } = useContext(CacheContext);
+  const { setFetch } = useContext(FetchContext);
   const [fetchUrl, setFetchUrl] = useState();
   const [placeholder, setPlaceholder] = useState("Array of JSONs URL...");
 
   function handleClick() {
     if (fetchUrl) {
-      axios.get(fetchUrl).then((res) => (Array.isArray(res.data)) ? setCache(res.data) : setCache([res.data]));
-      //axios.get(fetchUrl).then((res) => setCache(res.data));
+      let newFetchStatus = {
+        type: "dynamic",
+        icon: "",
+        message: "",
+      };
+      setFetch(newFetchStatus);
+      axios
+        .get(fetchUrl)
+        .then((res) => {
+          Array.isArray(res.data) ? setCache(res.data) : setCache([res.data]);
+        })
+        .catch((err) => {
+          let newFetchStatus = {
+            type: "static",
+            icon: "exclamation",
+            message: `
+                Something went wrong... 
+                I couldn't fetch the provided URL.
+                ${err}`,
+          };
+          setFetch(newFetchStatus);
+        });
     } else {
       setPlaceholder("Please enter a valid URL");
     }

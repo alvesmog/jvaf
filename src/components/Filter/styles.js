@@ -2,8 +2,11 @@ import styled from "styled-components";
 
 export const FilterWrapper = styled.div`
   width: 20%;
-  height: 100%;
-  max-height: 800px;
+  max-height: 650px;
+  border-radius: 8px;
+  border-width: 2pt;
   overflow-y: auto;
-  border-radius: 12px;
+  @media(max-width: 375px) {
+    width: 100%
+  }
 `;
