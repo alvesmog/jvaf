@@ -1,5 +1,7 @@
 # JVAF
 
+[Link to the deployed app](https://jvaf.netlify.app/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 JVAF stands for JSON View & Filter. This simple tool allows you to fetch an array of JSON objects and dinamically renders it as a table. It also provides filters for unique object key values, sorting and pagination options for your data.
