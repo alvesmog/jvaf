@@ -49,7 +49,7 @@ function DataTable() {
   useEffect(() => {
     setTotalPages(data.length / entriesPerPage);
     paginate(data, entriesPerPage, activePage);
-  }, [data]);
+  }, [data, cache]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -132,12 +132,13 @@ function DataTable() {
               <Table.Header>
                 <Table.Row>
                   {paginatedData[0] &&
-                    Object.keys(data[0]).map((header) => (
+                    Object.keys(data[0]).map((header, i) => (
                       <Table.HeaderCell
                         sorted={sorted === header ? direction : null}
                         onClick={() => handleSorting(header)}
                         style={headerStyle}
                         column={header}
+                        key={i}
                       >
                         {header}
                       </Table.HeaderCell>
@@ -146,11 +147,15 @@ function DataTable() {
               </Table.Header>
               <Table.Body>
                 {paginatedData[0] &&
-                  paginatedData.map((entry) => (
-                    <Table.Row>
-                      {Object.values(entry).map((cellData) => {
+                  paginatedData.map((entry, i) => (
+                    <Table.Row key={i}>
+                      {Object.values(entry).map((cellData, i) => {
                         try {
-                          return <Table.Cell>{cellData.toString()}</Table.Cell>;
+                          return (
+                            <Table.Cell key={i}>
+                              {cellData.toString()}
+                            </Table.Cell>
+                          );
                         } catch {
                           console.log(cellData);
                         }

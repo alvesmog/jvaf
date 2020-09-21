@@ -124,18 +124,21 @@ function Filter() {
             </Header>
             <Divider section />
             {headers &&
-              headers.map((header) => {
+              headers.map((header, i) => {
                 return (
                   <>
-                    <Header as="h5">{header}</Header>
+                    <Header as="h5" key={i}>
+                      {header}
+                    </Header>
                     {Object.keys(actualValues).length !== 0 &&
                       actualValues[header] &&
-                      actualValues[header].map((option) => (
+                      actualValues[header].map((option, i) => (
                         <Checkbox
                           label={option.toString()}
                           column={header.toString()}
                           value={option.toString()}
                           onChange={filterHandler}
+                          key={i}
                         />
                       ))}
                     <Divider section />

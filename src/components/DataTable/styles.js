@@ -24,6 +24,10 @@ export const StyledPopUp = styled(Popup)`
     &:before {
       background-color: #ffe09c;
     }
+    @media (max-width: 1300px) {
+      position: relative;
+      left: 700px !important;
+    }
   }
 `;
 
@@ -36,10 +40,22 @@ export const FooterContent = styled.div`
     margin: 0 !important;
     margin-right: 10px !important;
     align-items: center;
+    @media (max-width: 1300px) {
+      margin-right: 0px !important;
+    }
   }
   div[role="listbox"] {
     height: 100%;
     min-width: 160px !important;
     max-width: 160px !important;
+    @media (max-width: 1300px) {
+      height: 40px;
+    }
+  }
+  @media (max-width: 1300px) {
+    .ui.mini.statistic > .value,
+    .ui.mini.statistics .statistic > .value {
+      font-size: 1rem !important;
+    }
   }
 `;
